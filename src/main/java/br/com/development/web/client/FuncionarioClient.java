@@ -2,6 +2,7 @@ package br.com.development.web.client;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.RequestEntity;
@@ -41,18 +42,18 @@ public class FuncionarioClient {
 	}
 
 	public List<Funcionario> buscarPorNome(String nome) {
-		// TODO Auto-generated method stub
-		return null;
+		Funcionario[] funcionarios = restTemplate.getForObject("http://localhost:9000/funcionarios/{nome}", Funcionario[].class, nome);
+		return Arrays.asList(funcionarios);
 	}
 
 	public List<Funcionario> buscarCargoPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		 Funcionario[] funcionarios = restTemplate.getForObject("http://localhost:9000/funcionarios/{id}", Funcionario[].class, id);
+		return Arrays.asList(funcionarios);
 	}
 
 	public List<Funcionario> buscarPorDatas(LocalDate entrada, LocalDate saida) {
-		// TODO Auto-generated method stub
-		return null;
+		 Funcionario[] funcionarios = restTemplate.getForObject("http://localhost:9000/funcionarios/{dataEntrada}/{dataSaida}", Funcionario[].class, entrada, saida);
+		return Arrays.asList(funcionarios);
 	}
 
 }
