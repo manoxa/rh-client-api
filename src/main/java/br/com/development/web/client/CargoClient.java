@@ -18,30 +18,29 @@ public class CargoClient {
 	
 	public List<Cargo> buscarTodos(){
 		RequestEntity<Void> request = RequestEntity
-				.get(URI.create("http://localhost:9000/cargos")).build();
+				.get(URI.create("http://rh-api:8080/cargos")).build();
 		ResponseEntity<Cargo[]> response = restTemplate.exchange(request, Cargo[].class);
 		return Arrays.asList(response.getBody());
 	}
 	
 	public Cargo buscarPorId(Long id){
-		return restTemplate.getForObject("http://localhost:9000/cargos/{id}", Cargo.class, id);
+		return restTemplate.getForObject("http://rh-api:8080/cargos/{id}", Cargo.class, id);
 	}
 	
 	public boolean cargoTemFuncionarioRelacionado(Long id) {
-		return restTemplate.getForObject("http://localhost:9000/cargos/temfuncionarios/{id}", Boolean.class, id);
+		return restTemplate.getForObject("http://rh-api:8080/cargos/temfuncionarios/{id}", Boolean.class, id);
 	}
 	
 	public Cargo salvar(Cargo cargo){
-		return restTemplate.postForObject("http://localhost:9000/cargos/", cargo, Cargo.class);
+		return restTemplate.postForObject("http://rh-api:8080/cargos/", cargo, Cargo.class);
 	}
 	
 	public void editar(Cargo cargo) {
-		restTemplate.put("http://localhost:9000/cargos/{id}", cargo, cargo.getId());
+		restTemplate.put("http://rh-api:8080/cargos/{id}", cargo, cargo.getId());
 	}
 	
 	public void excluir(Long id) {
-		restTemplate.delete("http://localhost:9000/cargos/{id}", id);
+		restTemplate.delete("http://rh-api:8080/cargos/{id}", id);
 	}
-
 
 }

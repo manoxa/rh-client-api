@@ -8,12 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.development.domain.Cargo;
@@ -34,13 +29,13 @@ public class FuncionarioController {
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 	}
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioClient.buscarTodos());
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 
 	@PostMapping("/salvar")
@@ -53,7 +48,7 @@ public class FuncionarioController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("funcionario", funcionarioClient.buscarPorId(id));
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 
 	}
 
@@ -75,13 +70,13 @@ public class FuncionarioController {
 	@GetMapping("/buscar/nome")
 	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioClient.buscarPorNome(nome));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@GetMapping("/buscar/cargo")
 	public String getPorcargo(@RequestParam("id") Long id, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioClient.buscarCargoPorId(id));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@GetMapping("/buscar/data")
@@ -89,7 +84,7 @@ public class FuncionarioController {
 							  @RequestParam("saida") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate saida,
 							  ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioClient.buscarPorDatas(entrada, saida));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 		
 	}
 	
