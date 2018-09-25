@@ -8,15 +8,15 @@ Com o seu kubernetes executando, siga os passos abaixo para reproduzir o exemplo
 
 Faca o build na aplicacao e o deploy no kubernetes
 
-$ mvn clean package
+    $ mvn clean package
 
-$ mvn fabric8:build fabric8:resource fabric8:deploy
+    $ mvn fabric8:build fabric8:resource fabric8:deploy
 
 Test application :
 
-http://192.168.99.100:31372/  
+    http://192.168.99.100:31372/  
 
 Para deletar os recursos do kubernetes como: deployment, service, secret and pvc.
 
-$ mvn fabric8:undeploy
+    $ mvn fabric8:undeploy
 
